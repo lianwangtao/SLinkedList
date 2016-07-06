@@ -1,5 +1,10 @@
-
+/* 
+ * SLinkedList
+ * Author: Shane Lian
+ * Class: Node
+ */
 public class Node<E> {
+	//private fields
 	private E data;
 	private Node<E> next;
 	public Node(E data, Node<E> next) {
@@ -7,6 +12,7 @@ public class Node<E> {
 		this.next = next;
 	}
 	
+	//setters
 	public void setData(E data) {
 		this.data = data;
 	}
@@ -15,6 +21,7 @@ public class Node<E> {
 		this.next = next;
 	}
 	
+	//getters
 	public E getData() {
 		return this.data;
 	}
