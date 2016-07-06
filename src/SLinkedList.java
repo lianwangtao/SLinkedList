@@ -61,7 +61,8 @@ public class SLinkedList<E> implements Iterable<E>{
 	
 	//Check if the list is empty
 	public boolean isEmpty() {
-		return true;
+		if (size == 0) return true;
+		else return false;
 	}
 
 	@Override
