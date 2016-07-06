@@ -64,12 +64,24 @@ public class SLinkedList<E> implements Iterable<E>{
 
 	//Get an item from the specific index of the list
 	public Node<E> get(int index) {
+		
 		return null;
 	}
 	
 	//Check if the list contains an item
-	public boolean contains(E data) {
-		return true;
+	public boolean contains(E data) throws NullDataException {
+		//If the data is null, throw an exception
+		if (data == null) throw new NullDataException();
+		//Check if the head has the data
+		if (head.getData().equals(data)) return true;
+		else {
+			Node<E> curr = head;
+			while (curr.getNext() != null) {
+				curr = curr.getNext();
+				if (curr.getData().equals(data)) return true;
+			}
+		}
+		return false;
 	}
 	
 	//Remove an item from a specific index of the list

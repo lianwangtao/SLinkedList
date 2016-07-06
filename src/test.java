@@ -4,7 +4,7 @@ public class test {
 		SLinkedList<String> list = new SLinkedList<String>();
 		
 		/*
-		 * Test for Add & isEmpty
+		 * Test for "Add" & "isEmpty"
 		 */
 		//1. empty list
 		if (list.isEmpty()) System.out.println("Without anything inside, the list is empty!");
@@ -23,5 +23,12 @@ public class test {
 		//4. Add a fifth to index 2
 		list.add(2, "fifth item");
 		System.out.println(list.size());
+		
+		/*
+		 * Check the "Contains" method
+		 */
+		//5. Check if the list has the item just added
+		if (list.contains("fifth item")) System.out.println("The list has it!");
+		else System.out.println("The list doesn't have it!");
 	}
 }
