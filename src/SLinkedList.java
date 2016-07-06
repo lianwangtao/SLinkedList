@@ -34,9 +34,32 @@ public class SLinkedList<E> implements Iterable<E>{
 			size++;
 		}
 	}
+	
 	//Add item at the specific index of the list
-	public void add(int index, E data) {
-		
+	public void add(int index, E data) throws NullDataException {
+		//If the data is null, throw exception
+		if (data == null) throw new NullDataException();
+		//If the list is empty, add the node to the head
+		if (size == 0) {
+			head = new Node<E>(data, null);
+			size++;
+		}else if (index >= size) {
+			//If the index is larger than or equal to the size, add the item to the end
+			Node<E> curr = head;
+			while (curr.getNext() != null) {
+				curr = curr.getNext();
+			}
+			curr.setNext(new Node<E>(data, null));
+			size++;
+		}else {
+			//Else add the item to the specific position
+			Node<E> curr = head;
+			for (int i = 0; i < index; i++) {
+				curr = curr.getNext();
+			}
+			curr.setNext(new Node<E>(data, curr.getNext()));
+			size++;
+		}
 	}
 
 	//Get an item from the specific index of the list
