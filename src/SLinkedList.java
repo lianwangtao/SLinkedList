@@ -17,8 +17,22 @@ public class SLinkedList<E> implements Iterable<E>{
 	}
 	
 	//Add item to the end of the list
-	public void add(E data) {
-		
+	public void add(E data) throws NullDataException {
+		//If the data is null, throw exception
+		if (data == null) throw new NullDataException("Null Data!");
+		//If the list is empty, make it into the head
+		if (head == null) {
+			head = new Node<E> (data, null);
+			size++;
+		}else {
+			//If the list is not empty, add the node to the end
+			Node<E> curr = head;
+			while (curr.getNext() != null) {
+				curr = curr.getNext();
+			}
+			curr.setNext(new Node<E>(data, null));
+			size++;
+		}
 	}
 	//Add item at the specific index of the list
 	public void add(int index, E data) {
@@ -43,6 +57,11 @@ public class SLinkedList<E> implements Iterable<E>{
 	//Get the size of the list
 	public int size() {
 		return this.size;
+	}
+	
+	//Check if the list is empty
+	public boolean isEmpty() {
+		return true;
 	}
 
 	@Override
