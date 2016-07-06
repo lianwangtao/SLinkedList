@@ -27,9 +27,7 @@ public class SLinkedList<E> implements Iterable<E>{
 		}else {
 			//If the list is not empty, add the node to the end
 			Node<E> curr = head;
-			while (curr.getNext() != null) {
-				curr = curr.getNext();
-			}
+			curr = toEnd(curr);
 			curr.setNext(new Node<E>(data, null));
 			size++;
 		}
@@ -75,6 +73,7 @@ public class SLinkedList<E> implements Iterable<E>{
 		//Check if the head has the data
 		if (head.getData().equals(data)) return true;
 		else {
+			//Otherwise check if the list contains the data
 			Node<E> curr = head;
 			while (curr.getNext() != null) {
 				curr = curr.getNext();
@@ -99,7 +98,27 @@ public class SLinkedList<E> implements Iterable<E>{
 		if (size == 0) return true;
 		else return false;
 	}
+	
+	//Helper method for traversing to the end
+	@SuppressWarnings("rawtypes")
+	private static Node toEnd(Node head) {
+		Node curr = head;
+		while (curr.getNext() != null) {
+			curr = curr.getNext();
+		}
+		return curr;
+	}
 
+	//Helper method for traversing to a node before the index
+	@SuppressWarnings("rawtypes")
+	private static Node toIndex(int index, Node head) {
+		Node curr = head;
+		for (int i = 0; i < index; i++) {
+			curr = curr.getNext();
+		}
+		return curr;
+	}
+	
 	@Override
 	public Iterator<E> iterator() {
 		return null;
