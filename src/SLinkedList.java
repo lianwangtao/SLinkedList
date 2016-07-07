@@ -6,7 +6,7 @@
 
 import java.util.*;
 
-public class SLinkedList<E> implements Iterable<E>{
+public class SLinkedList<E> {
 	//private fields
 	private Node<E> head;
 	private int size;
@@ -44,26 +44,24 @@ public class SLinkedList<E> implements Iterable<E>{
 		}else if (index >= size) {
 			//If the index is larger than or equal to the size, add the item to the end
 			Node<E> curr = head;
-			while (curr.getNext() != null) {
-				curr = curr.getNext();
-			}
+			curr = toEnd(curr);
 			curr.setNext(new Node<E>(data, null));
 			size++;
 		}else {
 			//Else add the item to the specific position
 			Node<E> curr = head;
-			for (int i = 0; i < index; i++) {
-				curr = curr.getNext();
-			}
+			curr = toIndex(index, curr);
 			curr.setNext(new Node<E>(data, curr.getNext()));
 			size++;
 		}
 	}
 
 	//Get an item from the specific index of the list
-	public Node<E> get(int index) {
-		
-		return null;
+	public E get(int index) {
+		Node<E> curr = head;
+		curr = toIndex(index, curr);
+		curr = curr.getNext();
+		return curr.getData();
 	}
 	
 	//Check if the list contains an item
@@ -85,7 +83,9 @@ public class SLinkedList<E> implements Iterable<E>{
 	
 	//Remove an item from a specific index of the list
 	public void remove(int index) {
-		
+		Node<E> curr = head;
+		curr = toIndex(index, curr);
+		curr.setNext(curr.getNext().getNext());
 	}
 	
 	//Get the size of the list
@@ -113,16 +113,20 @@ public class SLinkedList<E> implements Iterable<E>{
 	@SuppressWarnings("rawtypes")
 	private static Node toIndex(int index, Node head) {
 		Node curr = head;
-		for (int i = 0; i < index; i++) {
+		for (int i = 0; i < index - 1; i++) {
 			curr = curr.getNext();
 		}
 		return curr;
 	}
 	
-	@Override
-	public Iterator<E> iterator() {
-		return null;
+	public String toString() {
+		String result = "";
+		Node<E> curr = head;
+		while (curr != null) {
+			result += "--- " + curr.getData() + " ---";
+			curr = curr.getNext();
+		}
+		return result;
 	}
-	
 	
 }

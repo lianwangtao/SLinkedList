@@ -30,5 +30,8 @@ public class test {
 		//5. Check if the list has the item just added
 		if (list.contains("fifth item")) System.out.println("The list has it!");
 		else System.out.println("The list doesn't have it!");
+		System.out.println(list.toString());
+		
+		
 	}
 }
